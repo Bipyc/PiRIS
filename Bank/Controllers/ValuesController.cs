@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Bank.DataManagement.Contexts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bank.Controllers
@@ -10,10 +11,17 @@ namespace Bank.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private ClientContext _clientContext;
+
+        public ValuesController(ClientContext clientContext)
+        {
+            _clientContext = clientContext;
+        }
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
-        {
+        {           
             return new string[] { "value1", "value2" };
         }
 
