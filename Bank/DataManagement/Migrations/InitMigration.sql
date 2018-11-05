@@ -9,7 +9,7 @@ GO
 
 CREATE TABLE [Clients]
 (
-	[Id] INT NOT NULL,
+	[Id] INT IDENTITY(1,1),
 	[MiddleName] NVARCHAR(MAX) NOT NULL,
 	[FirstName] NVARCHAR(MAX) NOT NULL,
 	[LastName] NVARCHAR(MAX) NOT NULL,
@@ -22,26 +22,28 @@ CREATE TABLE [Clients]
 	[PlaceBirth] NVARCHAR(MAX) NOT NULL,
 	[CurrentCityId] INT NOT NULL,
 	[CurrentAddress] NVARCHAR(MAX) NOT NULL,
-	[HomePhone] VARCHAR(200) NOT NULL,
-	[MobilePhone] VARCHAR(200) NOT NULL,
-	[Email] VARCHAR(MAX) NOT NULL,
-	[WorkPlace] NVARCHAR(MAX) NOT NULL,
-	[WorkPosition] NVARCHAR(MAX) NOT NULL,
+	[HomePhone] VARCHAR(200) DEFAULT NULL,
+	[MobilePhone] VARCHAR(200) DEFAULT NULL,
+	[Email] VARCHAR(MAX) DEFAULT NULL,
+	[WorkPlace] NVARCHAR(MAX) DEFAULT NULL,
+	[WorkPosition] NVARCHAR(MAX) DEFAULT NULL,
 	[RegistrationCityId] INT NOT NULL,
 	[RegistrationAddress] NVARCHAR(MAX) NOT NULL,
 	[MaritalStatusId] INT NOT NULL,
 	[CitizenshipId] INT NOT NULL,
 	[DisabilityId] INT NOT NULL,
 	[IsRetired] BIT NOT NULL,
-	[MonthRevenue] DECIMAL(18,9) NOT NULL,
+	[MonthRevenue] DECIMAL(18,9) DEFAULT NULL,
 	[IsLiableForMilitaryService] BIT NOT NULL,
-	PRIMARY KEY([Id])
+	PRIMARY KEY([Id]),
+	UNIQUE([PassportNumber]),
+	UNIQUE([IdentityNumber])
 );
 GO
 
 CREATE TABLE [Cities]
 (
-	[Id] INT NOT NULL,
+	[Id] INT IDENTITY(1,1),
 	[Name] NVARCHAR(MAX) NOT NULL,
 	PRIMARY KEY([Id])
 );
@@ -49,7 +51,7 @@ GO
 
 CREATE TABLE [Citizenships]
 (
-	[Id] INT NOT NULL,
+	[Id] INT IDENTITY(1,1),
 	[CountryName] NVARCHAR(MAX) NOT NULL,
 	PRIMARY KEY([Id])
 );
@@ -57,7 +59,7 @@ GO
 
 CREATE TABLE [Disabilities]
 (
-	[Id] INT NOT NULL,
+	[Id] INT IDENTITY(1,1),
 	[Name] NVARCHAR(MAX) NOT NULL,
 	PRIMARY KEY([Id])
 );
@@ -65,7 +67,7 @@ GO
 
 CREATE TABLE [MaritalStatuses]
 (
-	[Id] INT NOT NULL,
+	[Id] INT IDENTITY(1,1),
 	[Name] NVARCHAR(MAX) NOT NULL,
 	PRIMARY KEY([Id])
 );
@@ -94,4 +96,40 @@ GO
 ALTER TABLE [dbo].[Clients]
 	ADD CONSTRAINT FK_Clients_MaritalStatusId FOREIGN KEY ([MaritalStatusId])
 		REFERENCES [dbo].[MaritalStatuses]([Id]);
+GO
+
+INSERT INTO
+		[dbo].[Cities]
+	VALUES
+		('Минск'),
+		('Москва'),
+		('Брест'),
+		('Витебск'),
+		('Другое')
+GO
+
+INSERT INTO
+		[dbo].[Citizenships]
+	VALUES
+		('РБ'),
+		('РФ'),
+		('Другое')
+GO
+
+INSERT INTO
+		[dbo].[Disabilities]
+	VALUES
+		('Танкист'),
+		('1-я степень'),
+		('2-я степень'),
+		('3-я степень'),
+		('Нет')
+GO
+
+INSERT INTO
+		[dbo].[MaritalStatuses]
+	VALUES
+		('Холост'),
+		('Женат'),
+		('Гражданский брак')
 GO

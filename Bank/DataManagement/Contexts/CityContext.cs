@@ -15,5 +15,11 @@ namespace Bank.DataManagement.Contexts
         }
 
         public DbSet<City> Cities { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Client>().HasIndex(client => client.IdentityNumber).IsUnique();
+            builder.Entity<Client>().HasIndex(client => client.PassportNumber).IsUnique();
+        }
     }
 }

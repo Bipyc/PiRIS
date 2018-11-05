@@ -34,6 +34,7 @@ namespace Bank
                 options.UseSqlServer(connection));
             services.AddDbContext<CityContext>(options =>
                 options.UseSqlServer(connection));
+
             services.AddDbContext<ClientContext>(options =>
                 options.UseSqlServer(connection));
             services.AddDbContext<DisabilityContext>(options =>

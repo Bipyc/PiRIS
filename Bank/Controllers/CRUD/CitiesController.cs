@@ -7,8 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Bank.DataManagement.Contexts;
 using Bank.Models;
+using Bank.Common;
 
-namespace Bank.Controllers
+namespace Bank.Controllers.CRUD
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -25,13 +26,17 @@ namespace Bank.Controllers
         [HttpGet]
         public IEnumerable<City> GetCities()
         {
-            return _context.Cities;
+            CommonUtils.AddDefaultHeaders(HttpContext);
+
+            return _context.Cities;          
         }
 
         // GET: api/Cities/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCity([FromRoute] int id)
         {
+            CommonUtils.AddDefaultHeaders(HttpContext);
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -51,6 +56,8 @@ namespace Bank.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCity([FromRoute] int id, [FromBody] City city)
         {
+            CommonUtils.AddDefaultHeaders(HttpContext);
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -86,6 +93,8 @@ namespace Bank.Controllers
         [HttpPost]
         public async Task<IActionResult> PostCity([FromBody] City city)
         {
+            CommonUtils.AddDefaultHeaders(HttpContext);
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -101,6 +110,8 @@ namespace Bank.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCity([FromRoute] int id)
         {
+            CommonUtils.AddDefaultHeaders(HttpContext);
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
