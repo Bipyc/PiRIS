@@ -12,5 +12,12 @@ namespace Bank.Common
         {
             context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
         }
+
+        public static String ToString(this DateTime dateTime)
+        {
+            string result = dateTime.ToString("yyyy-mm-dd");
+
+            return result;
+        }
     }
 }

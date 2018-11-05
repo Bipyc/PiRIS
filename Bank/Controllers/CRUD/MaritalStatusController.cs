@@ -8,11 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using Bank.DataManagement.Contexts;
 using Bank.Models;
 using Bank.Common;
+using Microsoft.AspNetCore.Cors;
 
 namespace Bank.Controllers.CRUD
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("MyPolicy")]
     public class MaritalStatusController : ControllerBase
     {
         private readonly MaritalStatusContext _context;
@@ -26,8 +28,6 @@ namespace Bank.Controllers.CRUD
         [HttpGet]
         public IEnumerable<MaritalStatus> GetMaritalStatuses()
         {
-            CommonUtils.AddDefaultHeaders(HttpContext);
-
             return _context.MaritalStatuses;
         }
 
@@ -35,8 +35,6 @@ namespace Bank.Controllers.CRUD
         [HttpGet("{id}")]
         public async Task<IActionResult> GetMaritalStatus([FromRoute] int id)
         {
-            CommonUtils.AddDefaultHeaders(HttpContext);
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -56,8 +54,6 @@ namespace Bank.Controllers.CRUD
         [HttpPut("{id}")]
         public async Task<IActionResult> PutMaritalStatus([FromRoute] int id, [FromBody] MaritalStatus maritalStatus)
         {
-            CommonUtils.AddDefaultHeaders(HttpContext);
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -93,8 +89,6 @@ namespace Bank.Controllers.CRUD
         [HttpPost]
         public async Task<IActionResult> PostMaritalStatus([FromBody] MaritalStatus maritalStatus)
         {
-            CommonUtils.AddDefaultHeaders(HttpContext);
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -110,8 +104,6 @@ namespace Bank.Controllers.CRUD
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMaritalStatus([FromRoute] int id)
         {
-            CommonUtils.AddDefaultHeaders(HttpContext);
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

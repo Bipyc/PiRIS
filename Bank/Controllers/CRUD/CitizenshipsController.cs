@@ -8,11 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using Bank.DataManagement.Contexts;
 using Bank.Models;
 using Bank.Common;
+using Microsoft.AspNetCore.Cors;
 
 namespace Bank.Controllers.CRUD
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("MyPolicy")]
     public class CitizenshipsController : ControllerBase
     {
         private readonly CitizenshipContext _context;
@@ -26,8 +28,6 @@ namespace Bank.Controllers.CRUD
         [HttpGet]
         public IEnumerable<Citizenship> GetCitizenships()
         {
-            CommonUtils.AddDefaultHeaders(HttpContext);
-
             return _context.Citizenships;
         }
 
@@ -35,8 +35,6 @@ namespace Bank.Controllers.CRUD
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCitizenship([FromRoute] int id)
         {
-            CommonUtils.AddDefaultHeaders(HttpContext);
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -56,8 +54,6 @@ namespace Bank.Controllers.CRUD
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCitizenship([FromRoute] int id, [FromBody] Citizenship citizenship)
         {
-            CommonUtils.AddDefaultHeaders(HttpContext);
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -93,8 +89,6 @@ namespace Bank.Controllers.CRUD
         [HttpPost]
         public async Task<IActionResult> PostCitizenship([FromBody] Citizenship citizenship)
         {
-            CommonUtils.AddDefaultHeaders(HttpContext);
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -110,8 +104,6 @@ namespace Bank.Controllers.CRUD
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCitizenship([FromRoute] int id)
         {
-            CommonUtils.AddDefaultHeaders(HttpContext);
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

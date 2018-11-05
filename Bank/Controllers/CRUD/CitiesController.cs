@@ -8,11 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using Bank.DataManagement.Contexts;
 using Bank.Models;
 using Bank.Common;
+using Microsoft.AspNetCore.Cors;
 
 namespace Bank.Controllers.CRUD
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("MyPolicy")]
     public class CitiesController : ControllerBase
     {
         private readonly CityContext _context;
@@ -26,8 +28,6 @@ namespace Bank.Controllers.CRUD
         [HttpGet]
         public IEnumerable<City> GetCities()
         {
-            CommonUtils.AddDefaultHeaders(HttpContext);
-
             return _context.Cities;          
         }
 
@@ -35,8 +35,6 @@ namespace Bank.Controllers.CRUD
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCity([FromRoute] int id)
         {
-            CommonUtils.AddDefaultHeaders(HttpContext);
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -56,8 +54,6 @@ namespace Bank.Controllers.CRUD
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCity([FromRoute] int id, [FromBody] City city)
         {
-            CommonUtils.AddDefaultHeaders(HttpContext);
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -93,8 +89,6 @@ namespace Bank.Controllers.CRUD
         [HttpPost]
         public async Task<IActionResult> PostCity([FromBody] City city)
         {
-            CommonUtils.AddDefaultHeaders(HttpContext);
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -110,8 +104,6 @@ namespace Bank.Controllers.CRUD
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCity([FromRoute] int id)
         {
-            CommonUtils.AddDefaultHeaders(HttpContext);
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
