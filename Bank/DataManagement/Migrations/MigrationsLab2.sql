@@ -215,7 +215,9 @@ INSERT INTO
 		('From debit to debit', NULL),
 		('From debit to credit', NULL),
 		('From credit to credit', NULL),
-		('From credit to debit', NULL);
+		('From credit to debit', NULL),
+		('Add to debit', NULL),
+		('Add to credit', NULL);
 GO
 
 INSERT INTO
@@ -256,7 +258,7 @@ INSERT INTO
 		[dbo].[Accounts]
 	VALUES
 		(
-			'7327000000001',
+			'7327000000011',
 			GETDATE(),
 			1,
 			100000000.0,
@@ -265,7 +267,43 @@ INSERT INTO
 			0,
 			NULL,
 			NULL,
-			'Фонд развития банка'
+			'Фонд развития банка(BYN)'
+		),
+		(
+			'7327000000021',
+			GETDATE(),
+			1,
+			100000000.0,
+			100000000.0,
+			0.0,
+			0,
+			NULL,
+			NULL,
+			'Фонд развития банка(RUB)'
+		),
+		(
+			'7327000000031',
+			GETDATE(),
+			1,
+			100000000.0,
+			100000000.0,
+			0.0,
+			0,
+			NULL,
+			NULL,
+			'Фонд развития банка(USD)'
+		),
+		(
+			'7327000000041',
+			GETDATE(),
+			1,
+			100000000.0,
+			100000000.0,
+			0.0,
+			0,
+			NULL,
+			NULL,
+			'Фонд развития банка(EUR)'
 		),
 		(
 			'0101000000011',
@@ -331,3 +369,6 @@ INSERT INTO
 		('LastIdForCurrentAccounts', '3014000000001'),
 		('LastIdForCreditDepositAccounts', '1337000000001'),
 		('LastIdForDepositAccounts', '1336000000001');
+GO
+
+SELECT * FROM [dbo].[Accounts];

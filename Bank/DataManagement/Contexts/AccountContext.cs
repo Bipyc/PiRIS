@@ -25,6 +25,30 @@ namespace Bank.DataManagement.Contexts
             }
         }
 
+        public Account BankAccountRUB
+        {
+            get
+            {
+                return Accounts.Where(account => account.AccountNumber == Constants.BankAccountNumberRUB).First();
+            }
+        }
+
+        public Account BankAccountUSD
+        {
+            get
+            {
+                return Accounts.Where(account => account.AccountNumber == Constants.BankAccountNumberUSD).First();
+            }
+        }
+
+        public Account BankAccountEUR
+        {
+            get
+            {
+                return Accounts.Where(account => account.AccountNumber == Constants.BankAccountNumberEUR).First();
+            }
+        }
+
         public Account CashBoxAccountBYN
         {
             get

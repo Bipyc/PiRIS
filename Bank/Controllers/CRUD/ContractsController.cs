@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Bank.DataManagement.Contexts;
 using Bank.Models;
+using Bank.Services.Interfaces;
+using Bank.Controllers.Models;
 
 namespace Bank.Controllers.CRUD
 {
@@ -16,9 +18,20 @@ namespace Bank.Controllers.CRUD
     {
         private readonly ContractContext _context;
 
-        public ContractsController(ContractContext context)
+        private readonly IContractCreator _contractCreator;
+
+        public ContractsController(ContractContext context, IContractCreator contractCreator)
         {
             _context = context;
+            _contractCreator = contractCreator;
+        }
+
+        [HttpGet]
+        public int AssingNewContract([FromBody] CreateContractDepositInfo createContractDepositInfo)
+        {
+            Contract contract = _contractCreator.CreateContractDeposit(createContractDepositInfo);
+
+            return contract.Id;
         }
 
         // GET: api/Contracts

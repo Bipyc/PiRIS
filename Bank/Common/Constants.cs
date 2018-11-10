@@ -12,7 +12,10 @@ namespace Bank.Common
         public const string CashBoxAccountNumberUSD = "0101000000031";
         public const string CashBoxAccountNumberEUR = "0101000000041";
 
-        public const string BankAccountNumberBYN = "7327000000001";
+        public const string BankAccountNumberBYN = "7327000000011";
+        public const string BankAccountNumberRUB = "7327000000021";
+        public const string BankAccountNumberUSD = "7327000000031";
+        public const string BankAccountNumberEUR = "7327000000041";
 
         public const string ClientsCreditAccountNumberPrefix = "2400";
         public const string ClientsCurrentAccountNumberPrefix = "3014";
@@ -25,5 +28,7 @@ namespace Bank.Common
         public const string ClientsCurrentAccountNumberConfigName = "LastIdForCurrentAccounts";
         public const string CreditDepositAccountNumberConfigName = "LastIdForCreditDepositAccounts";
         public const string DepositAccountNumberConfigName = "LastIdForDepositAccounts";
+
+        public const int PeriodOfAddProcentsForRevocableDeposits = 30;
     }
 }

@@ -6,6 +6,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Bank.DataManagement.Contexts;
 using Bank.Models;
+using Bank.Services.Implementations;
+using Bank.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -79,6 +81,13 @@ namespace Bank
             {
                 options.Filters.Add(new CorsAuthorizationFilterFactory("MyPolicy"));
             });
+
+            services.AddSingleton<IAccountHelper, AccountHelper>();
+            services.AddSingleton<IAccountNumberGenerator, AccountNumberGenerator>();
+            services.AddSingleton<IAccountRegistrator, AccountRegistrator>();
+            services.AddSingleton<ITransactionHelper, TransactionHelper>();
+            services.AddSingleton<IContractCreator, ContractCreator>();
+            services.AddSingleton<IDepositProcessor, DepositProcessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

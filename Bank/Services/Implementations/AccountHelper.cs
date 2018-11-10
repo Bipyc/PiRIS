@@ -104,17 +104,17 @@ namespace Bank.Services.Implementations
 
         private Account GetBankAccountRUB()
         {
-            return _accountContext.BankAccountBYN;
+            return _accountContext.BankAccountRUB;
         }
 
         private Account GetBankAccountUSD()
         {
-            return _accountContext.BankAccountBYN;
+            return _accountContext.BankAccountUSD;
         }
 
         private Account GetBankAccountEUR()
         {
-            return _accountContext.BankAccountBYN;
+            return _accountContext.BankAccountEUR;
         }
 
         private Account GetCashBoxAccountBYN()
@@ -140,6 +140,16 @@ namespace Bank.Services.Implementations
         public Account GetConstantAccount(ConstantAccounts accountType, Common.CurrencyType currencyType)
         {
             return _getAccountFuncDictionary[new GetConstantAccountParam() { ConstantAccount = accountType, CurrencyType = currencyType }]();
+        }
+
+        public Account GetMainAccountForDepositInContract(int contractId)
+        {
+            return _accountContext.Accounts.Where(account => account.ContractId == contractId && account.AccountNumber.StartsWith(Constants.DepositAccountNumberPrefix)).First();
+        }
+
+        public Account GetCreditAccountForDepositInContract(int contractId)
+        {
+            return _accountContext.Accounts.Where(account => account.ContractId == contractId && account.AccountNumber.StartsWith(Constants.CreditDepositAccountNumberPrefix)).First();
         }
     }
 }

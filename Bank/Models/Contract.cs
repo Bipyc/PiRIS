@@ -16,7 +16,7 @@ namespace Bank.Models
         [Required]
         public DateTime DateOfSign { get; set; }
         [Required]
-        public DateTime DateofEnd { get; set; }
+        public DateTime DateOfEnd { get; set; }
         [Required]
         public decimal Amount { get; set; }
         [ForeignKey("Deposit.Id")]

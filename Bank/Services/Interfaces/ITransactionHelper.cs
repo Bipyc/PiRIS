@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Bank.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Transactions;
 
 namespace Bank.Services.Interfaces
 {
@@ -13,6 +13,6 @@ namespace Bank.Services.Interfaces
         Transaction TransferFromCreditToCredit(int accountIdFrom, int accountIdTo, decimal amount);
         Transaction TransferFromCreditToDebit(int accountIdFrom, int accountIdTo, decimal amount);
         Transaction AddToDebit(int accountId, decimal amount);
-        Transaction AddToCredit(int accountid, decimal amount);
+        Transaction AddToCredit(int accountId, decimal amount);
     }
 }

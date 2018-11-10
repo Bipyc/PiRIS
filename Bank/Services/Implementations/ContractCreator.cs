@@ -71,7 +71,7 @@ namespace Bank.Services.Implementations
                 Amount = createContractDepositInfo.Amount,
                 ClientId = client.Id,
                 DateOfSign = createContractDepositInfo.StartDate,
-                DateofEnd = createContractDepositInfo.EndDate,
+                DateOfEnd = createContractDepositInfo.EndDate,
                 DepositId = deposit.Id,
                 CreditId = null,
                 CurrencyTypeId = createContractDepositInfo.CurrencyId

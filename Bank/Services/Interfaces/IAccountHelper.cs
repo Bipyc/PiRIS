@@ -10,5 +10,7 @@ namespace Bank.Services.Interfaces
     public interface IAccountHelper
     {
         Account GetConstantAccount(ConstantAccounts accountType, Common.CurrencyType currencyType);
+        Account GetMainAccountForDepositInContract(int contractId);
+        Account GetCreditAccountForDepositInContract(int contractId);
     }
 }
