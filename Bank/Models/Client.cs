@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Bank.Models
 {
+    [Table("Clients")]
     public class Client
     {
         [Key]

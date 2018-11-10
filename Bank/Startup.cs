@@ -45,6 +45,24 @@ namespace Bank
             services.AddDbContext<MaritalStatusContext>(options =>
                 options.UseSqlServer(connection));
 
+            services.AddDbContext<AccountContext>(options =>
+                options.UseSqlServer(connection));
+            services.AddDbContext<TransactionContext>(options =>
+                options.UseSqlServer(connection));
+            services.AddDbContext<TransactionTypeContext>(options =>
+                options.UseSqlServer(connection));
+            services.AddDbContext<ContractContext>(options =>
+                options.UseSqlServer(connection));
+            services.AddDbContext<DepositContext>(options =>
+                options.UseSqlServer(connection));
+            services.AddDbContext<CurrencyTypeContext>(options =>
+                options.UseSqlServer(connection));
+            services.AddDbContext<YearProcentDepositCurrencyContext>(options =>
+                options.UseSqlServer(connection));
+
+            services.AddDbContext<ConfigContext>(options =>
+                options.UseSqlServer(connection));
+
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
                 builder.AllowAnyOrigin()

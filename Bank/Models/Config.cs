@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 
 namespace Bank.Models
 {
-    [Table("Citizenships")]
-    public class Citizenship
+    [Table("Configs")]
+    public class Config
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
-        public string CountryName { get; set; }
+        public string Name { get; set; }
+        [Required]
+        public string Value { get; set; }
     }
 }
