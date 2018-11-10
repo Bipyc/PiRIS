@@ -254,6 +254,8 @@ INSERT INTO
 		(2, 4, 0.7);
 GO
 
+DELETE FROM [dbo].[Accounts];
+
 INSERT INTO
 		[dbo].[Accounts]
 	VALUES
