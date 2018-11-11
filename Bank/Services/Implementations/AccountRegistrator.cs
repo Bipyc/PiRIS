@@ -23,18 +23,20 @@ namespace Bank.Services.Implementations
 
         public Account RegistrateAccount(AccountType accountType, int contractId, int clientId, int currencyTypeId, DateTime creationTime, string accountName)
         {
+            string generatedAccountNumber = _accountNumberGenerator.GenerateAccountNumber(accountType);
+
             Account account = new Account()
             {
-                AccountNumber = _accountNumberGenerator.GenerateAccountNumber(accountType),
+                AccountNumber = generatedAccountNumber,
                 ContractId = contractId,
                 ClientId = clientId,
                 CurrencyTypeId = currencyTypeId,
-                AccountName = accountName,
+                AccountName = accountName ?? generatedAccountNumber,
                 Debit = 0,
                 Credit = 0,
                 Saldo = 0,
                 CreationDate = creationTime,
-                IsClosed = false
+                IsClosed = false,
             };
 
             _accountContext.Add(account);

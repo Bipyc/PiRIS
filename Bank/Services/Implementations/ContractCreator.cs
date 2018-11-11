@@ -61,7 +61,7 @@ namespace Bank.Services.Implementations
                        (Common.CurrencyType)createContractDepositInfo.CurrencyId
                    ).Id;
             _transactionHelper.AddToDebit(cashBoxAccountId, amount);
-            _transactionHelper.TransferFromDebitToCredit(cashBoxAccountId, mainDepositAccount.Id, amount);
+            _transactionHelper.TransferFromCreditToCredit(cashBoxAccountId, mainDepositAccount.Id, amount);
         }
 
         public Models.Contract RegistrateContract(Deposit deposit, Client client, CreateContractDepositInfo createContractDepositInfo)

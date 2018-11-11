@@ -50,8 +50,8 @@ CREATE TABLE [dbo].[Contracts]
 	[DateOfSign] DATETIME2(7) NOT NULL,
 	[DateOfEnd] DATETIME2(7) NOT NULL,
 	[Amount] DECIMAL(21, 9) NOT NULL,
-	[DepositId] INT NOT NULL,
-	[CreditId] INT NOT NULL,
+	[DepositId] INT DEFAULT NULL,
+	[CreditId] INT DEFAULT NULL,
 	[CurrencyTypeId] INT NOT NULL,
 	[ClientId] INT NOT NULL,
 	PRIMARY KEY([Id])
@@ -372,5 +372,3 @@ INSERT INTO
 		('LastIdForCreditDepositAccounts', '1337000000001'),
 		('LastIdForDepositAccounts', '1336000000001');
 GO
-
-SELECT * FROM [dbo].[Accounts];

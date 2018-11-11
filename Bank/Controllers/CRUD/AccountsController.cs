@@ -30,14 +30,14 @@ namespace Bank.Controllers.CRUD
 
         // GET: api/Accounts/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAccount([FromRoute] int id)
+        public IActionResult GetAccount([FromRoute] string id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var account = await _context.Accounts.FindAsync(id);
+            var account = _context.Accounts.Where(acc => acc.AccountNumber == id).First();
 
             if (account == null)
             {

@@ -16,7 +16,7 @@ namespace Bank.Services.Implementations
         private AccountContext _accountContext;
 
 
-        public AccountHelper(AccountContext accountContext) : base()
+        public AccountHelper(AccountContext accountContext) : this()
         {
             _accountContext = accountContext;
         }

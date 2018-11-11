@@ -26,14 +26,6 @@ namespace Bank.Controllers.CRUD
             _contractCreator = contractCreator;
         }
 
-        [HttpGet]
-        public int AssingNewContract([FromBody] CreateContractDepositInfo createContractDepositInfo)
-        {
-            Contract contract = _contractCreator.CreateContractDeposit(createContractDepositInfo);
-
-            return contract.Id;
-        }
-
         // GET: api/Contracts
         [HttpGet]
         public IEnumerable<Contract> GetContracts()

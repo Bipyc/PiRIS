@@ -84,7 +84,7 @@ namespace Bank.Services.Implementations
 
             Account accountTo = _accountContext.Accounts.Find(accountIdTo);
 
-            accountFrom.Credit += amount;
+            accountTo.Credit += amount;
 
             _accountContext.SaveChanges();
 
@@ -111,7 +111,7 @@ namespace Bank.Services.Implementations
 
             Account accountTo = _accountContext.Accounts.Find(accountIdTo);
 
-            accountFrom.Debit += amount;
+            accountTo.Debit += amount;
 
             _accountContext.SaveChanges();
 
@@ -138,7 +138,7 @@ namespace Bank.Services.Implementations
 
             Account accountTo = _accountContext.Accounts.Find(accountIdTo);
 
-            accountFrom.Credit += amount;
+            accountTo.Credit += amount;
 
             _accountContext.SaveChanges();
 
@@ -165,7 +165,7 @@ namespace Bank.Services.Implementations
 
             Account accountTo = _accountContext.Accounts.Find(accountIdTo);
 
-            accountFrom.Debit += amount;
+            accountTo.Debit += amount;
 
             _accountContext.SaveChanges();
 

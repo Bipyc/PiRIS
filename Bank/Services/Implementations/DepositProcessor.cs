@@ -63,7 +63,7 @@ namespace Bank.Services.Implementations
         {
             int dateDiff = (int)((DateTime.Now - contract.DateOfEnd).TotalDays);
 
-            if (dateDiff > 0 && dateDiff % Constants.PeriodOfAddProcentsForRevocableDeposits == 0)
+            if (dateDiff >= 0 && dateDiff % Constants.PeriodOfAddProcentsForRevocableDeposits == 0)
             {
                 AddProcentsToDepositContract(contract, deposit);
             }

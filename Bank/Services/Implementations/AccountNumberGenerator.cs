@@ -15,7 +15,7 @@ namespace Bank.Services.Implementations
         private ConfigContext _configContext;
 
 
-        public AccountNumberGenerator(ConfigContext configContext) : base()
+        public AccountNumberGenerator(ConfigContext configContext) : this()
         {
             _configContext = configContext;
         }
@@ -32,7 +32,9 @@ namespace Bank.Services.Implementations
 
         private string GetCurrentValueOfConfig(string name)
         {
-            return _configContext.Configs.Where(config => config.Name == name).First().Value;
+            string value = _configContext.Configs.Where(config => config.Name == name).First().Value;
+
+            return value;
         }
 
         private void SetValueForConfig(string name, string value)
@@ -44,7 +46,7 @@ namespace Bank.Services.Implementations
 
         private string GenerateAccountNumber(string configName)
         {
-            int value = Convert.ToInt32(GetCurrentValueOfConfig(configName));
+            long value = Convert.ToInt64(GetCurrentValueOfConfig(configName));
 
             value += 10;
 
@@ -55,12 +57,12 @@ namespace Bank.Services.Implementations
 
         private string GenerateNumberForCreditDepositAccount()
         {
-            return GenerateAccountNumber(Constants.ClientsCreditAccountNumberConfigName);
+            return GenerateAccountNumber(Constants.CreditDepositAccountNumberConfigName);
         }
 
         private string GenerateNumberForDepositAccount()
         {
-            return GenerateAccountNumber(Constants.CreditDepositAccountNumberConfigName);
+            return GenerateAccountNumber(Constants.DepositAccountNumberConfigName);
         }
 
         private string GenerateNumberForCreditAccount()

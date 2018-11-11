@@ -82,12 +82,12 @@ namespace Bank
                 options.Filters.Add(new CorsAuthorizationFilterFactory("MyPolicy"));
             });
 
-            services.AddSingleton<IAccountHelper, AccountHelper>();
-            services.AddSingleton<IAccountNumberGenerator, AccountNumberGenerator>();
-            services.AddSingleton<IAccountRegistrator, AccountRegistrator>();
-            services.AddSingleton<ITransactionHelper, TransactionHelper>();
-            services.AddSingleton<IContractCreator, ContractCreator>();
-            services.AddSingleton<IDepositProcessor, DepositProcessor>();
+            services.AddScoped<IAccountHelper, AccountHelper>();
+            services.AddScoped<IAccountNumberGenerator, AccountNumberGenerator>();
+            services.AddScoped<IAccountRegistrator, AccountRegistrator>();
+            services.AddScoped<ITransactionHelper, TransactionHelper>();
+            services.AddScoped<IContractCreator, ContractCreator>();
+            services.AddScoped<IDepositProcessor, DepositProcessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
