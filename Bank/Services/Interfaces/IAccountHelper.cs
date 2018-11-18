@@ -12,5 +12,9 @@ namespace Bank.Services.Interfaces
         Account GetConstantAccount(ConstantAccounts accountType, Common.CurrencyType currencyType);
         Account GetMainAccountForDepositInContract(int contractId);
         Account GetCreditAccountForDepositInContract(int contractId);
+        Account GetMainCreditAccountInContract(int contractId);
+        Account GetPercentCreditAccountInContract(int contractId);
+        Account GetAccountByAccountNumber(string accountNumber);
+        string GeneratePIN();
     }
 }

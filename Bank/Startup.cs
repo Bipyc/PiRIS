@@ -65,6 +65,11 @@ namespace Bank
             services.AddDbContext<ConfigContext>(options =>
                 options.UseSqlServer(connection));
 
+            services.AddDbContext<CreditContext>(options =>
+                options.UseSqlServer(connection));
+            services.AddDbContext<YearProcentCreditCurrencyContext>(options =>
+                options.UseSqlServer(connection));
+
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
                 builder.AllowAnyOrigin()
@@ -88,6 +93,9 @@ namespace Bank
             services.AddScoped<ITransactionHelper, TransactionHelper>();
             services.AddScoped<IContractCreator, ContractCreator>();
             services.AddScoped<IDepositProcessor, DepositProcessor>();
+            services.AddScoped<ICreditProcessor, CreditProcessor>();
+            services.AddScoped<IAccountCreditsManager, AccountCreditsManager>();
+            services.AddScoped<ICreditCardManager, CreditCardManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

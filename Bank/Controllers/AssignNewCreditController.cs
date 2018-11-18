@@ -12,20 +12,20 @@ namespace Bank.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AssignNewDepositController : ControllerBase
+    public class AssignNewCreditController : ControllerBase
     {
         private readonly IContractCreator _contractCreator;
 
-        public AssignNewDepositController(IContractCreator contractCreator)
+        public AssignNewCreditController(IContractCreator contractCreator)
         {
             _contractCreator = contractCreator;
         }
 
         // POST: api/AssignNewDeposit
         [HttpPost]
-        public CreateContractDepositResponse Post([FromBody] CreateContractDepositInfo createContractDepositInfo)
+        public CreateContractCreditResponse Post([FromBody] CreateContractCreditInfo createContractCreditInfo)
         {
-            CreateContractDepositResponse response = _contractCreator.CreateContractDeposit(createContractDepositInfo);
+            CreateContractCreditResponse response = _contractCreator.CreateContractCredit(createContractCreditInfo);
 
             return response;
         }

@@ -15,10 +15,13 @@ namespace Bank.Services.Implementations
 
         private AccountContext _accountContext;
 
+        private Random _random;
+
 
         public AccountHelper(AccountContext accountContext) : this()
         {
             _accountContext = accountContext;
+            _random = new Random();
         }
 
         public AccountHelper()
@@ -150,6 +153,26 @@ namespace Bank.Services.Implementations
         public Account GetCreditAccountForDepositInContract(int contractId)
         {
             return _accountContext.Accounts.Where(account => account.ContractId == contractId && account.AccountNumber.StartsWith(Constants.CreditDepositAccountNumberPrefix)).First();
+        }
+
+        public Account GetMainCreditAccountInContract(int contractId)
+        {
+            return _accountContext.Accounts.Where(account => account.ContractId == contractId && account.AccountNumber.StartsWith(Constants.ClientsCurrentAccountNumberPrefix)).First();
+        }
+
+        public Account GetPercentCreditAccountInContract(int contractId)
+        {
+            return _accountContext.Accounts.Where(account => account.ContractId == contractId && account.AccountNumber.StartsWith(Constants.ClientsCreditAccountNumberPrefix)).First();
+        }
+
+        public Account GetAccountByAccountNumber(string accountNumber)
+        {
+            return _accountContext.Accounts.Where(account => account.AccountNumber == accountNumber).FirstOrDefault();
+        }
+
+        public string GeneratePIN()
+        {
+            return _random.Next(0, 9999).ToString("D4");
         }
     }
 }

@@ -12,56 +12,60 @@ namespace Bank.Controllers.CRUD
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccountsController : ControllerBase
+    public class CreditsController : ControllerBase
     {
-        private readonly AccountContext _context;
+        private readonly CreditContext _context;
 
-        public AccountsController(AccountContext context)
+        public CreditsController(CreditContext context)
         {
             _context = context;
         }
 
-        // GET: api/Accounts
+        // GET: api/Credits
         [HttpGet]
-        public IEnumerable<Account> GetAccounts()
+        public IEnumerable<Credit> GetCredits()
         {
-            return _context.Accounts;
+            var result = _context.Credits
+                            .Include(credit => credit.CurrencyTypes)
+                            .ThenInclude(yearProcentCreditCurrency => yearProcentCreditCurrency.CurrencyType);
+
+            return result;
         }
 
-        // GET: api/Accounts/5
+        // GET: api/Credits/5
         [HttpGet("{id}")]
-        public IActionResult GetAccount([FromRoute] int id)
+        public async Task<IActionResult> GetCredit([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var account = _context.Accounts.Where(acc => acc.Id == id).First();
+            var credit = await _context.Credits.FindAsync(id);
 
-            if (account == null)
+            if (credit == null)
             {
                 return NotFound();
             }
 
-            return Ok(account);
+            return Ok(credit);
         }
 
-        // PUT: api/Accounts/5
+        // PUT: api/Credits/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAccount([FromRoute] int id, [FromBody] Account account)
+        public async Task<IActionResult> PutCredit([FromRoute] int id, [FromBody] Credit credit)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != account.Id)
+            if (id != credit.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(account).State = EntityState.Modified;
+            _context.Entry(credit).State = EntityState.Modified;
 
             try
             {
@@ -69,7 +73,7 @@ namespace Bank.Controllers.CRUD
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AccountExists(id))
+                if (!CreditExists(id))
                 {
                     return NotFound();
                 }
@@ -82,45 +86,45 @@ namespace Bank.Controllers.CRUD
             return NoContent();
         }
 
-        // POST: api/Accounts
+        // POST: api/Credits
         [HttpPost]
-        public async Task<IActionResult> PostAccount([FromBody] Account account)
+        public async Task<IActionResult> PostCredit([FromBody] Credit credit)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Accounts.Add(account);
+            _context.Credits.Add(credit);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAccount", new { id = account.Id }, account);
+            return CreatedAtAction("GetCredit", new { id = credit.Id }, credit);
         }
 
-        // DELETE: api/Accounts/5
+        // DELETE: api/Credits/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAccount([FromRoute] int id)
+        public async Task<IActionResult> DeleteCredit([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var account = await _context.Accounts.FindAsync(id);
-            if (account == null)
+            var credit = await _context.Credits.FindAsync(id);
+            if (credit == null)
             {
                 return NotFound();
             }
 
-            _context.Accounts.Remove(account);
+            _context.Credits.Remove(credit);
             await _context.SaveChangesAsync();
 
-            return Ok(account);
+            return Ok(credit);
         }
 
-        private bool AccountExists(int id)
+        private bool CreditExists(int id)
         {
-            return _context.Accounts.Any(e => e.Id == id);
+            return _context.Credits.Any(e => e.Id == id);
         }
     }
 }

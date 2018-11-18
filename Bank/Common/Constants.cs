@@ -30,5 +30,6 @@ namespace Bank.Common
         public const string DepositAccountNumberConfigName = "LastIdForDepositAccounts";
 
         public const int PeriodOfAddProcentsForRevocableDeposits = 30;
+        public const int PeriodOfProcessProcentsCredits = 30;
     }
 }

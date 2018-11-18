@@ -25,9 +25,10 @@ namespace Bank.Controllers
         [HttpPost]
         public int Post([FromBody] CreateContractDepositInfo createContractDepositInfo)
         {
-            Contract contract = _contractCreator.CreateContractDeposit(createContractDepositInfo);
+            //Contract contract = _contractCreator.CreateContractDeposit(createContractDepositInfo);
 
-            return contract.Id;
+            //return contract.Id;
+            return 0;
         }
     }
 }

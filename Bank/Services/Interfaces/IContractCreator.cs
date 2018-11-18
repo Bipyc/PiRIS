@@ -9,6 +9,7 @@ namespace Bank.Services.Interfaces
 {
     public interface IContractCreator
     {
-        Bank.Models.Contract CreateContractDeposit(CreateContractDepositInfo createContractDepositInfo);
+        CreateContractDepositResponse CreateContractDeposit(CreateContractDepositInfo createContractDepositInfo);
+        CreateContractCreditResponse CreateContractCredit(CreateContractCreditInfo createContractCreditInfo);
     }
 }

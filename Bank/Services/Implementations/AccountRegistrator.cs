@@ -14,11 +14,14 @@ namespace Bank.Services.Implementations
 
         private IAccountNumberGenerator _accountNumberGenerator;
 
+        private IAccountHelper _accountHelper;
 
-        public AccountRegistrator(AccountContext accountContext, IAccountNumberGenerator accountNumberGenerator)
+
+        public AccountRegistrator(AccountContext accountContext, IAccountNumberGenerator accountNumberGenerator, IAccountHelper accountHelper)
         {
             _accountContext = accountContext;
             _accountNumberGenerator = accountNumberGenerator;
+            _accountHelper = accountHelper;
         }
 
         public Account RegistrateAccount(AccountType accountType, int contractId, int clientId, int currencyTypeId, DateTime creationTime, string accountName)
@@ -37,6 +40,7 @@ namespace Bank.Services.Implementations
                 Saldo = 0,
                 CreationDate = creationTime,
                 IsClosed = false,
+                PIN = _accountHelper.GeneratePIN()
             };
 
             _accountContext.Add(account);

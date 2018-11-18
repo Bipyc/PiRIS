@@ -34,5 +34,14 @@ namespace Bank.Models
         public int? ContractId { get; set; }
         [ForeignKey("Client.Id")]
         public int? ClientId { get; set; }
+        public string PIN { get; set; }
+        [NotMapped]
+        public decimal SummaryAmount
+        {
+            get
+            {
+                return Debit + Credit;
+            }
+        }
     }
 }

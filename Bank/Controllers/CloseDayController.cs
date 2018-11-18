@@ -10,25 +10,26 @@ namespace Bank.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CloseBankDayController : ControllerBase
+    public class CloseDayController : ControllerBase
     {
         private IDepositProcessor _depositProcessor;
 
         private ICreditProcessor _creditProcessor;
 
-        public CloseBankDayController(IDepositProcessor depositProcessor, ICreditProcessor creditProcessor)
+        public CloseDayController(IDepositProcessor depositProcessor, ICreditProcessor creditProcessor)
         {
             _creditProcessor = creditProcessor;
             _depositProcessor = depositProcessor;
         }
 
-        // POST: api/CloseBankDay
+        // GET: api/CloseDay
         [HttpGet]
-        public void CloseBankDay()
+        public IActionResult CloseDay()
         {
             _creditProcessor.ProcessCredits();
             _depositProcessor.ProcessDeposits();
-        }
 
+            return Ok();
+        }       
     }
 }
